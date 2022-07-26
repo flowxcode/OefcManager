@@ -1,0 +1,28 @@
+{
+  "participants": {
+    "numbers": [
+      {
+        "peopleCategoryId": "Cadults",
+        "number": "1"
+      }
+    ]
+  },
+  "customer": {
+    "firstName": "Sebastian",
+    "lastName": "Binder"
+  },
+  "productId": "42558TTPR9J172E0382A0C",
+  "options": [
+    {
+      "id": "",
+      "name": "",
+      "value": ""
+    },
+    {
+      "id": "",
+      "name": "",
+      "value": ""
+    }
+  ],
+  "eventId": "42558TTPR9J172E0382A0C_42558AFP3LA1738FD62AE8_2022-05-08"
+}

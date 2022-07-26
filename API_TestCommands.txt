@@ -1,0 +1,7 @@
+https://api.bookeo.com/v2/settings/products?secretKey=TODO&type=fixed&apiKey=TODO
+
+https://api.bookeo.com/v2/availability/slots?secretKey=TODO&apiKey=TODO&startTime=2022-04-20T15:33:00Z&endTime=2022-05-15T20:33:00Z
+
+https://api.bookeo.com/v2/settings/resources?secretKey=TODO&type=fixed&apiKey=TODO
+
+
