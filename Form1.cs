@@ -15,6 +15,7 @@ using System.Net;
 using System.IO.Compression;
 using System.Net.Http.Headers;
 using System.Configuration;
+using System.Globalization;
 
 namespace OEFC_Manager
 {
@@ -65,7 +66,7 @@ namespace OEFC_Manager
                 xlApp = new Excel.Application();
                 xlWorkbook = xlApp.Workbooks.Open(file);
                 xlApp.Visible = true;
-                Thread.Sleep(2000);
+                //Thread.Sleep(2000);
                 tbc_main.Enabled = true;
                 pnl_gsentwert.Enabled = true;
                 rb_auto_CheckedChanged(sender, e);
@@ -416,16 +417,22 @@ namespace OEFC_Manager
         private void rb_auto_CheckedChanged(object sender, EventArgs e)
         {
             filterNew();
-            DateTime time = Convert.ToDateTime(xlSheet.Cells[last.Row, 6].Text());
-            if ((DateTime.Now - time).TotalDays > 30)
+
+            string[] formats = { "dd.MM.yyyy HH:mm", "dd.MM.yyyy H:mm" };
+
+            var lastRowCell = xlSheet.Cells[last.Row, 6];
+            DateTime dateTimeResult;
+            DateTime.TryParseExact(lastRowCell.Text, formats, CultureInfo.InvariantCulture, DateTimeStyles.None, out dateTimeResult);
+
+            if ((DateTime.Now - dateTimeResult).TotalDays > 30)
             {
-                endtime = time.AddDays(30).ToString("yyyy-MM-ddTHH:mm:ssZ");
+                endtime = dateTimeResult.AddDays(30).ToString("yyyy-MM-ddTHH:mm:ssZ");
             }
             else
             {
                 endtime = DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ssZ");
             }
-            starttime = time.ToString("s") + "Z";
+            starttime = dateTimeResult.ToString("s") + "Z";
         }
 
         private void Form1_Load(object sender, EventArgs e)
