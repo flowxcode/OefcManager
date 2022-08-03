@@ -20,6 +20,8 @@ namespace OEFC_Manager
 {
     public partial class Form1 : Form
     {
+        bool debug = false;
+
         string key = null;
         string api = null;
         string prodId_Tm_main = "42558A3J377172E034FE20";
@@ -44,12 +46,32 @@ namespace OEFC_Manager
         public Form1()
         {
             InitializeComponent();
+            debug = bool.Parse(ConfigurationManager.AppSettings["Debug"]);
             key = ConfigurationManager.AppSettings["Key"];
             api = ConfigurationManager.AppSettings["Api"];
+
+            if (debug)
+            {
+                btn_file_Click(null, null);
+            }
         }
 
         private void btn_file_Click(object sender, EventArgs e)
         {
+            if (debug)
+            {
+                string file = "C:\\Users\\floiso\\Downloads\\OEFCloud PAX Einteilung_dev.xlsx";
+                lbl_file.Text = file;
+                xlApp = new Excel.Application();
+                xlWorkbook = xlApp.Workbooks.Open(file);
+                xlApp.Visible = true;
+                Thread.Sleep(2000);
+                tbc_main.Enabled = true;
+                pnl_gsentwert.Enabled = true;
+                rb_auto_CheckedChanged(sender, e);
+                return;
+            }
+
             DialogResult result = fd_file.ShowDialog(); // Show the dialog.
             if (result == DialogResult.OK) // Test result.
             {
