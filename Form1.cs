@@ -16,6 +16,7 @@ using System.IO.Compression;
 using System.Net.Http.Headers;
 using System.Configuration;
 using System.Globalization;
+using System.Diagnostics;
 
 namespace OEFC_Manager
 {
@@ -55,6 +56,8 @@ namespace OEFC_Manager
             {
                 btn_file_Click(null, null);
             }
+
+            Console.WriteLine("Excel opened");
         }
 
         private void btn_file_Click(object sender, EventArgs e)
@@ -161,7 +164,9 @@ namespace OEFC_Manager
                         }
                         catch(Exception ex)
                         {
-                            MessageBox.Show("Parsing customer info went wrong: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            //MessageBox.Show("Parsing customer info went wrong: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            Debug.WriteLine("Parsing customer info went wrong: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            // TODO console log
                             status = false;
                         }
                         
@@ -197,7 +202,9 @@ namespace OEFC_Manager
             {
                 if (coupons.Contains(customer.code.ToString()))
                 {
-                    MessageBox.Show("Coupon: " + customer.code.ToString() + " already in List", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //MessageBox.Show("Coupon: " + customer.code.ToString() + " already in List", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Debug.WriteLine("Coupon: " + customer.code.ToString() + " already in List", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    // TODO console log
                 }
                 else
                 {
