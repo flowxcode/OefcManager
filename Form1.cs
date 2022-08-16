@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -125,7 +125,12 @@ namespace OEFC_Manager
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri("https://api.bookeo.com/v2/");
 
-            string url= "https://api.bookeo.com/v2/payments?startTime=" + starttime + "&endTime=" + endtime + "&secretKey=" + key + "&type=fixed&apiKey=" + api;
+            string url= "https://api.bookeo.com/v2/payments?startTime=" + starttime + 
+                "&endTime=" + endtime + 
+                "&itemsPerPage=300" +
+                "&secretKey=" + key + 
+                "&type=fixed&apiKey=" + api;
+                
             try
             {
                 var response = await client.GetStringAsync(url);
