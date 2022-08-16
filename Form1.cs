@@ -56,8 +56,6 @@ namespace OEFC_Manager
             {
                 btn_file_Click(null, null);
             }
-
-            Console.WriteLine("Excel opened");
         }
 
         private void btn_file_Click(object sender, EventArgs e)
@@ -73,6 +71,7 @@ namespace OEFC_Manager
                 tbc_main.Enabled = true;
                 pnl_gsentwert.Enabled = true;
                 rb_auto_CheckedChanged(sender, e);
+                Console.WriteLine("Excel opened");
                 return;
             }
 
@@ -86,10 +85,11 @@ namespace OEFC_Manager
                     xlApp = new Excel.Application();
                     xlWorkbook = xlApp.Workbooks.Open(file);                    
                     xlApp.Visible = true;
-                    Thread.Sleep(7000); //wait until open
+                    Thread.Sleep(5000); //wait until open
                     tbc_main.Enabled = true;
                     pnl_gsentwert.Enabled = true;
                     rb_auto_CheckedChanged(sender, e);
+                    Console.WriteLine("Excel opened");
                 }
                 catch (IOException)
                 {
@@ -104,7 +104,7 @@ namespace OEFC_Manager
             btn_entwerten.Enabled = false;
             filterNew();
             MessageBox.Show("Searching from: " + starttime + " to: "+ endtime, "Timespawn", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            request_payments();           
+            request_payments();
         }
 
         private void filterNew()
@@ -124,15 +124,25 @@ namespace OEFC_Manager
 
         public async void request_payments()
         {
+            payments = new List<Payment>();
+
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri("https://api.bookeo.com/v2/");
 
-            string url= "https://api.bookeo.com/v2/payments?startTime=" + starttime + "&endTime=" + endtime + "&secretKey=" + key + "&type=fixed&apiKey=" + api;
+            string url= "https://api.bookeo.com/v2/payments?startTime=" + starttime + 
+                "&endTime=" + endtime + 
+                "&itemsPerPage=300" +
+                "&secretKey=" + key + 
+                "&type=fixed&apiKey=" + api;
             try
             {
+                Console.WriteLine("apicall {0}", url.ToString());
+                
                 var response = await client.GetStringAsync(url);
                 JObject json = JObject.Parse(response);
                 var jsonData = json["data"];
+
+                Console.WriteLine("found {0} items from bookeo", jsonData.Count());
 
                 if(jsonData.Count() == 0)
                 {
@@ -159,11 +169,13 @@ namespace OEFC_Manager
                             payment.transactionId = ar["transactionId"].ToString();
                             url_customer = "https://api.bookeo.com/v2/customers/" + ar["customerId"].ToString() + "?type=fixed&secretKey=" + key + "&apiKey=" + api;
 
+                            Console.WriteLine("apicall " + url_customer);
                             response = await client.GetStringAsync(url_customer);
-                            Thread.Sleep(500); //otherwise http error 429
+                            Thread.Sleep(1000); //otherwise http error 429
                         }
                         catch(Exception ex)
                         {
+                            Console.WriteLine(ex.ToString());
                             //MessageBox.Show("Parsing customer info went wrong: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             Debug.WriteLine("Parsing customer info went wrong: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             // TODO console log
@@ -178,6 +190,8 @@ namespace OEFC_Manager
                         }                       
                     }
                     payments.Sort((a, b) => a.receivedTime.CompareTo(b.receivedTime));
+
+                    Console.WriteLine("start write to Excel");
                     writeToExcel();
                 }
                 btn_findGS.Enabled = true;
@@ -187,8 +201,10 @@ namespace OEFC_Manager
             {
                 btn_findGS.Enabled = true;
                 btn_entwerten.Enabled = true;
-            }           
-        }  
+            }
+
+            Console.WriteLine("{0} finished", nameof(request_payments));
+        }
 
         public void writeToExcel()
         {
@@ -204,7 +220,7 @@ namespace OEFC_Manager
                 {
                     //MessageBox.Show("Coupon: " + customer.code.ToString() + " already in List", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Debug.WriteLine("Coupon: " + customer.code.ToString() + " already in List", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    // TODO console log
+                    Console.WriteLine("Coupon: " + customer.code.ToString() + " already in List", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
@@ -214,6 +230,8 @@ namespace OEFC_Manager
                     xlSheet.Cells[lastrow, 3].Value = customer.amount.ToString();
                     xlSheet.Cells[lastrow, 4].Value = customer.customer.ToString();
                     xlSheet.Cells[lastrow, 6].Value = customer.receivedTime;
+
+                    Console.WriteLine("written line {0}: {1}", lastrow, customer.code.ToString());
                 }
             }
             last = xlSheet.Cells.SpecialCells(Excel.XlCellType.xlCellTypeLastCell, Type.Missing);
@@ -413,6 +431,7 @@ namespace OEFC_Manager
             endtime = DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ssZ");
             double days = Convert.ToDouble(nud_days.Value);
             starttime = DateTime.Now.AddDays(-days).ToString("yyyy-MM-ddTHH:mm:ssZ");
+            Console.WriteLine("endtime {0} starttime {1}", endtime, starttime);
         }
 
         private void rb_timespawn_CheckedChanged(object sender, EventArgs e)
@@ -461,6 +480,7 @@ namespace OEFC_Manager
             endtime = DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ssZ");
             double days = Convert.ToDouble(nud_days.Value);
             starttime = DateTime.Now.AddDays(-days).ToString("yyyy-MM-ddTHH:mm:ssZ");
+            Console.WriteLine("endtime {0} starttime {1}", endtime, starttime);
         }
     }
 }
