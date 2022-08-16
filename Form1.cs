@@ -120,6 +120,8 @@ namespace OEFC_Manager
 
         public async void request_payments()
         {
+            payments = new List<Payment>();
+            
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri("https://api.bookeo.com/v2/");
 
