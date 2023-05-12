@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace OEFC_Manager
+namespace OEFC_Manager.Classes
 {
     class Payment
     {

@@ -10,7 +10,7 @@ using Newtonsoft.Json.Linq;
 using Excel = Microsoft.Office.Interop.Excel;
 using System.Text.RegularExpressions;
 using System.Threading;
-using OEFC_Manager.classes;
+using OEFC_Manager.Classes;
 using System.Net;
 using System.IO.Compression;
 using System.Net.Http.Headers;
@@ -26,6 +26,7 @@ namespace OEFC_Manager
 
         string key = null;
         string api = null;
+
         string prodId_Tm_main = "42558A3J377172E034FE20";
         string prodId_Tm_opt_cam = "42558A3J377172E034FE20_L7RRA7R9";
         string prodId_Tm_opt_fett = "42558A3J377172E034FE20_CNLXLXKE";
@@ -43,6 +44,8 @@ namespace OEFC_Manager
         Excel.Range last;
         int gs_start_row = 6;
 
+        const string GSALL_Sheet = "GSALL";
+
         List<Payment> payments = new List<Payment>();
 
         public Form1()
@@ -57,12 +60,15 @@ namespace OEFC_Manager
                 btn_file_Click(null, null);
             }
         }
+        private void Form1_Load(object sender, EventArgs e)
+        {
+        }
 
         private void btn_file_Click(object sender, EventArgs e)
         {
             if (debug)
             {
-                string file = "C:\\Users\\floiso\\Downloads\\OEFCloud PAX Einteilung_dev.xlsx";
+                string file = "C:\\dev\\OEFCloud PAX Einteilung 2023 (version 1).xlsb.xlsx";
                 lbl_file.Text = file;
                 xlApp = new Excel.Application();
                 xlWorkbook = xlApp.Workbooks.Open(file);
@@ -80,36 +86,44 @@ namespace OEFC_Manager
             {
                 string file = fd_file.FileName;
                 lbl_file.Text = file;
+
                 try
                 {
                     xlApp = new Excel.Application();
                     xlWorkbook = xlApp.Workbooks.Open(file);                    
                     xlApp.Visible = true;
-                    Thread.Sleep(5000); //wait until open
+                    Thread.Sleep(2000); //wait until open
                     tbc_main.Enabled = true;
                     pnl_gsentwert.Enabled = true;
                     rb_auto_CheckedChanged(sender, e);
                     Console.WriteLine("Excel opened");
                 }
-                catch (IOException)
+                catch (IOException ex)
                 {
-                    
+                    throw new Exception(ex.ToString());
                 }
             }
         }
 
         private void btn_findGS_Click(object sender, EventArgs e)
-        {           
+        {
+            if (debug)
+            {
+                //starttime = "2023-11-01T00:0:01Z";
+                //endtime = "2023-11-30T00:00:01Z";
+            }
+
             btn_findGS.Enabled = false;
             btn_entwerten.Enabled = false;
             filterNew();
+
             MessageBox.Show("Searching from: " + starttime + " to: "+ endtime, "Timespawn", MessageBoxButtons.OK, MessageBoxIcon.Information);
             request_payments();
         }
 
         private void filterNew()
         {
-            xlSheet = xlWorkbook.Sheets["GS ALL"];
+            xlSheet = xlWorkbook.Sheets[GSALL_Sheet];
             xlSheet.Select();
             if (xlSheet.AutoFilter != null)
             {
@@ -191,7 +205,6 @@ namespace OEFC_Manager
                     }
                     payments.Sort((a, b) => a.receivedTime.CompareTo(b.receivedTime));
 
-                    Console.WriteLine("start write to Excel");
                     writeToExcel();
                 }
                 btn_findGS.Enabled = true;
@@ -208,6 +221,10 @@ namespace OEFC_Manager
 
         public void writeToExcel()
         {
+            Console.WriteLine("start write to Excel");
+
+            int countNew = 0;
+
             List<string> coupons = new List<string>();
             int lastrow = last.Row;
             for (int i = gs_start_row; i <= lastrow; i++)
@@ -225,6 +242,8 @@ namespace OEFC_Manager
                 else
                 {
                     lastrow += 1;
+                    countNew++;
+
                     xlSheet.Cells[lastrow, 1].Value = "new";
                     xlSheet.Cells[lastrow, 2].Value = customer.code.ToString();
                     xlSheet.Cells[lastrow, 3].Value = customer.amount.ToString();
@@ -238,6 +257,8 @@ namespace OEFC_Manager
             xlrange = xlSheet.Range["A5:A" + last.Row.ToString()];
             xlrange.AutoFilter(1, "new", Excel.XlAutoFilterOperator.xlFilterValues, Type.Missing, true);
             Excel.Range filteredRange = xlrange.SpecialCells(Excel.XlCellType.xlCellTypeVisible, Excel.XlSpecialCellsValue.xlTextValues);
+
+            Console.WriteLine("wrote countNew: " + countNew);
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -264,7 +285,6 @@ namespace OEFC_Manager
                 }
             }
             catch { }
-
         }
 
         private void btn_entwerten_Click(object sender, EventArgs e)
@@ -372,7 +392,7 @@ namespace OEFC_Manager
 
         private void filterEntwerten()
         {
-            xlSheet = xlWorkbook.Sheets["GS ALL"];
+            xlSheet = xlWorkbook.Sheets[GSALL_Sheet];
             xlSheet.Select();
             if (xlSheet.AutoFilter != null)
             {
@@ -459,10 +479,6 @@ namespace OEFC_Manager
                 endtime = DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ssZ");
             }
             starttime = dateTimeResult.ToString("s") + "Z";
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
         }
 
         private void dtp_start_ValueChanged(object sender, EventArgs e)

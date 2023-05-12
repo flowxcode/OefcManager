@@ -1,5 +1,5 @@
 ﻿
-namespace OEFC_Manager.classes
+namespace OEFC_Manager.Classes
 {
     public class Customer
     {

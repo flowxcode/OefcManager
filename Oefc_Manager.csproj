@@ -58,7 +58,7 @@
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject />
@@ -111,18 +111,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="classes\Booking.cs" />
-    <Compile Include="classes\BookingOption.cs" />
-    <Compile Include="classes\Customer.cs" />
-    <Compile Include="classes\PeopleNumber.cs" />
+    <Compile Include="Classes\Booking.cs" />
+    <Compile Include="Classes\BookingOption.cs" />
+    <Compile Include="Classes\Customer.cs" />
+    <Compile Include="Classes\PeopleNumber.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="classes\Participants.cs" />
-    <Compile Include="classes\Payment.cs" />
+    <Compile Include="Classes\Participants.cs" />
+    <Compile Include="Classes\Payment.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">

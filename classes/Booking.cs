@@ -1,7 +1,4 @@
-﻿using OEFC_Manager.classes;
-using System;
-
-namespace OEFC_Manager
+﻿namespace OEFC_Manager.Classes
 {
     public class Booking
     {
@@ -11,6 +8,5 @@ namespace OEFC_Manager
         public string giftVoucherCodeInput { get; set; }
         public BookingOption[] options { get; set; }
         public string eventId { get; set; }
-
     }
 }

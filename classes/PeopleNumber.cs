@@ -1,5 +1,4 @@
-﻿
-namespace OEFC_Manager
+﻿namespace OEFC_Manager.Classes
 {
     public class PeopleNumber
     {

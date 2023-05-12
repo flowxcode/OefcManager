@@ -60,21 +60,21 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbc_main.Controls.Add(this.tabPage1);
             this.tbc_main.Controls.Add(this.tabPage2);
-            this.tbc_main.Location = new System.Drawing.Point(12, 121);
-            this.tbc_main.Margin = new System.Windows.Forms.Padding(4);
+            this.tbc_main.Location = new System.Drawing.Point(6, 63);
+            this.tbc_main.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tbc_main.Name = "tbc_main";
             this.tbc_main.SelectedIndex = 0;
-            this.tbc_main.Size = new System.Drawing.Size(1128, 342);
+            this.tbc_main.Size = new System.Drawing.Size(564, 178);
             this.tbc_main.TabIndex = 1;
             // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.pnl_gsentwert);
-            this.tabPage1.Location = new System.Drawing.Point(8, 39);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage1.Size = new System.Drawing.Size(1112, 295);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage1.Size = new System.Drawing.Size(556, 152);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Gutscheine";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -94,18 +94,18 @@
             this.pnl_gsentwert.Controls.Add(this.label2);
             this.pnl_gsentwert.Controls.Add(this.label1);
             this.pnl_gsentwert.Enabled = false;
-            this.pnl_gsentwert.Location = new System.Drawing.Point(48, 40);
-            this.pnl_gsentwert.Margin = new System.Windows.Forms.Padding(4);
+            this.pnl_gsentwert.Location = new System.Drawing.Point(24, 21);
+            this.pnl_gsentwert.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pnl_gsentwert.Name = "pnl_gsentwert";
-            this.pnl_gsentwert.Size = new System.Drawing.Size(1004, 223);
+            this.pnl_gsentwert.Size = new System.Drawing.Size(502, 116);
             this.pnl_gsentwert.TabIndex = 5;
             // 
             // btn_entwerten
             // 
-            this.btn_entwerten.Location = new System.Drawing.Point(26, 117);
-            this.btn_entwerten.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_entwerten.Location = new System.Drawing.Point(13, 61);
+            this.btn_entwerten.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btn_entwerten.Name = "btn_entwerten";
-            this.btn_entwerten.Size = new System.Drawing.Size(200, 79);
+            this.btn_entwerten.Size = new System.Drawing.Size(100, 41);
             this.btn_entwerten.TabIndex = 10;
             this.btn_entwerten.Text = "GS entwerten";
             this.btn_entwerten.UseVisualStyleBackColor = true;
@@ -114,8 +114,8 @@
             // nud_days
             // 
             this.nud_days.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nud_days.Location = new System.Drawing.Point(252, 135);
-            this.nud_days.Margin = new System.Windows.Forms.Padding(4);
+            this.nud_days.Location = new System.Drawing.Point(126, 70);
+            this.nud_days.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.nud_days.Maximum = new decimal(new int[] {
             31,
             0,
@@ -127,7 +127,7 @@
             0,
             0});
             this.nud_days.Name = "nud_days";
-            this.nud_days.Size = new System.Drawing.Size(144, 44);
+            this.nud_days.Size = new System.Drawing.Size(72, 26);
             this.nud_days.TabIndex = 6;
             this.nud_days.Value = new decimal(new int[] {
             1,
@@ -140,10 +140,10 @@
             // 
             this.rb_auto.AutoSize = true;
             this.rb_auto.Checked = true;
-            this.rb_auto.Location = new System.Drawing.Point(252, 40);
-            this.rb_auto.Margin = new System.Windows.Forms.Padding(4);
+            this.rb_auto.Location = new System.Drawing.Point(126, 21);
+            this.rb_auto.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.rb_auto.Name = "rb_auto";
-            this.rb_auto.Size = new System.Drawing.Size(144, 29);
+            this.rb_auto.Size = new System.Drawing.Size(75, 17);
             this.rb_auto.TabIndex = 6;
             this.rb_auto.TabStop = true;
             this.rb_auto.Text = "automated";
@@ -152,10 +152,10 @@
             // 
             // btn_findGS
             // 
-            this.btn_findGS.Location = new System.Drawing.Point(26, 15);
-            this.btn_findGS.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_findGS.Location = new System.Drawing.Point(13, 8);
+            this.btn_findGS.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btn_findGS.Name = "btn_findGS";
-            this.btn_findGS.Size = new System.Drawing.Size(200, 79);
+            this.btn_findGS.Size = new System.Drawing.Size(100, 41);
             this.btn_findGS.TabIndex = 2;
             this.btn_findGS.Text = "GS aktualisieren";
             this.btn_findGS.UseVisualStyleBackColor = true;
@@ -164,30 +164,30 @@
             // dtp_end
             // 
             this.dtp_end.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtp_end.Location = new System.Drawing.Point(600, 154);
-            this.dtp_end.Margin = new System.Windows.Forms.Padding(4);
+            this.dtp_end.Location = new System.Drawing.Point(300, 80);
+            this.dtp_end.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dtp_end.Name = "dtp_end";
-            this.dtp_end.Size = new System.Drawing.Size(368, 38);
+            this.dtp_end.Size = new System.Drawing.Size(186, 23);
             this.dtp_end.TabIndex = 9;
             this.dtp_end.ValueChanged += new System.EventHandler(this.dtp_end_ValueChanged);
             // 
             // dtp_start
             // 
             this.dtp_start.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtp_start.Location = new System.Drawing.Point(600, 90);
-            this.dtp_start.Margin = new System.Windows.Forms.Padding(4);
+            this.dtp_start.Location = new System.Drawing.Point(300, 47);
+            this.dtp_start.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dtp_start.Name = "dtp_start";
-            this.dtp_start.Size = new System.Drawing.Size(368, 38);
+            this.dtp_start.Size = new System.Drawing.Size(186, 23);
             this.dtp_start.TabIndex = 8;
             this.dtp_start.ValueChanged += new System.EventHandler(this.dtp_start_ValueChanged);
             // 
             // rb_days
             // 
             this.rb_days.AutoSize = true;
-            this.rb_days.Location = new System.Drawing.Point(252, 90);
-            this.rb_days.Margin = new System.Windows.Forms.Padding(4);
+            this.rb_days.Location = new System.Drawing.Point(126, 47);
+            this.rb_days.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.rb_days.Name = "rb_days";
-            this.rb_days.Size = new System.Drawing.Size(145, 29);
+            this.rb_days.Size = new System.Drawing.Size(75, 17);
             this.rb_days.TabIndex = 6;
             this.rb_days.Text = "Last Days ";
             this.rb_days.UseVisualStyleBackColor = true;
@@ -196,10 +196,10 @@
             // rb_timespawn
             // 
             this.rb_timespawn.AutoSize = true;
-            this.rb_timespawn.Location = new System.Drawing.Point(464, 40);
-            this.rb_timespawn.Margin = new System.Windows.Forms.Padding(4);
+            this.rb_timespawn.Location = new System.Drawing.Point(232, 21);
+            this.rb_timespawn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.rb_timespawn.Name = "rb_timespawn";
-            this.rb_timespawn.Size = new System.Drawing.Size(294, 29);
+            this.rb_timespawn.Size = new System.Drawing.Size(147, 17);
             this.rb_timespawn.TabIndex = 5;
             this.rb_timespawn.Text = "Timespawn (max 31 days)";
             this.rb_timespawn.UseVisualStyleBackColor = true;
@@ -209,10 +209,10 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(460, 154);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(230, 80);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(122, 31);
+            this.label2.Size = new System.Drawing.Size(64, 17);
             this.label2.TabIndex = 4;
             this.label2.Text = "EndTime";
             // 
@@ -220,39 +220,39 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(460, 96);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(230, 50);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(132, 31);
+            this.label1.Size = new System.Drawing.Size(69, 17);
             this.label1.TabIndex = 3;
             this.label1.Text = "StartTime";
             // 
             // tabPage2
             // 
-            this.tabPage2.Location = new System.Drawing.Point(8, 39);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage2.Size = new System.Drawing.Size(1112, 295);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage2.Size = new System.Drawing.Size(556, 152);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // lbl_file
             // 
             this.lbl_file.AutoSize = true;
-            this.lbl_file.Location = new System.Drawing.Point(232, 48);
-            this.lbl_file.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_file.Location = new System.Drawing.Point(116, 25);
+            this.lbl_file.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_file.Name = "lbl_file";
-            this.lbl_file.Size = new System.Drawing.Size(0, 25);
+            this.lbl_file.Size = new System.Drawing.Size(0, 13);
             this.lbl_file.TabIndex = 1;
             // 
             // btn_file
             // 
             this.btn_file.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btn_file.Location = new System.Drawing.Point(12, 37);
-            this.btn_file.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_file.Location = new System.Drawing.Point(6, 19);
+            this.btn_file.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btn_file.Name = "btn_file";
-            this.btn_file.Size = new System.Drawing.Size(196, 48);
+            this.btn_file.Size = new System.Drawing.Size(98, 25);
             this.btn_file.TabIndex = 0;
             this.btn_file.Text = "Select File";
             this.btn_file.UseVisualStyleBackColor = true;
@@ -270,15 +270,15 @@
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1190, 481);
+            this.ClientSize = new System.Drawing.Size(595, 250);
             this.Controls.Add(this.tbc_main);
             this.Controls.Add(this.lbl_file);
             this.Controls.Add(this.btn_file);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Form1";
             this.Text = "1.Oefc Manager Beta 0.5";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
