@@ -68,7 +68,7 @@ namespace OEFC_Manager
         {
             if (debug)
             {
-                string file = "C:\\dev\\OEFCloud PAX Einteilung 2023 (version 1).xlsb.xlsx";
+                string file = "C:\\gitx\\OefcManager\\paxfile.xlsx";
                 lbl_file.Text = file;
                 xlApp = new Excel.Application();
                 xlWorkbook = xlApp.Workbooks.Open(file);
